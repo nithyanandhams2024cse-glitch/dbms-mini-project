@@ -1,0 +1,25 @@
+create database car_rentalll_db;
+use car_rentalll_db;
+-- Database Setup (Run this in your MySQL client)
+
+
+CREATE TABLE IF NOT EXISTS Cars (
+    car_id INT AUTO_INCREMENT PRIMARY KEY,
+    license_plate VARCHAR(20) NOT NULL UNIQUE,
+    make VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    daily_rate DECIMAL(10, 2) NOT NULL,
+    status VARCHAR(20) NOT NULL
+);
+
+-- 3. Create the Users Table (for login)
+CREATE TABLE IF NOT EXISTS Users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL, 
+    role ENUM('Admin', 'Customer') NOT NULL
+);
+
+-- 4. Insert Initial Users
+INSERT INTO Users (username, password_hash, role) VALUES ('admin', 'admin123', 'Admin');
+INSERT INTO Users (username, password_hash, role) VALUES ('customer1', 'custpass', 'Customer');
